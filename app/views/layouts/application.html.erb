@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  	<title>Archivist</title>
+
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+	<!-- <%= yield(:head) %> -->
+  </head>
+
+  <body>
+
+		<div class="fixed">
+		  <nav class="top-bar top" data-topbar role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<h1>Archivist</h1>
+					</li>
+				</ul>
+				<section class="top-bar-section">
+					<ul class="right">
+						<li class="divider"></li>
+
+						<% if current_user %>
+							<li><%= link_to "#{current_user.username}", users_path %></li>
+							<li class="divider"></li>
+							<li><%= link_to "Archives", archives_path %></li>
+							<li class="divider"></li>
+							<li><%= link_to "New Archive", new_archive_path %></li>
+							<li class="divider"></li>
+							<li><%= link_to "Log out", log_out_path %></li>
+						<% else %>
+							<li><%= link_to "Sign up", sign_up_path %></li>
+							<li class="divider"></li>
+							<li><%= link_to "Log in", log_in_path %></li>
+						<% end %>
+					</ul>
+				</section>
+		  </nav>
+		</div>
+
+		<% flash.each do |name, msg| %>
+			<%= content_tag :div, msg, :id => "flash_#{name}" %>
+			<% end %>
+
+		<div class="row">
+			<div class="small-2 column"></div>
+			<div class="small-8 column">
+				<%= yield %>
+			</div>
+			<div class="small-2 column"></div>
+		</div>
+
+	  <%= javascript_include_tag "application" %>
+  </body>
+</html>

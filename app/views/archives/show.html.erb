@@ -1,0 +1,64 @@
+<% if !@archive.nil? %>
+	<div class="row">
+		<h2 class="small-6 columns"><%=@archive.name%></h2>
+		<button class="small-1 columns archive_edit">Edit</button>
+		<%= link_to "Destroy", archive_path(@archive.id), class: "small-1 columns archive_destroy", method: :delete, data: {:confirm => "Permanently destroy archive?"} %>
+	</div><br /><br />
+	<% if @archive.description.present? %>
+		<h3>Description:</h3>
+		<h5><%= @archive.description%></h5><br />
+	<% end %>
+
+<% if @contents.any? and !@contents.first.id.nil? %>
+	<div>
+		<% @contents.each do |content| %>
+			<% if !content.id.nil? # Due to calling @archive.contents.new in the show action, an empty instance of content is added to @contents %>
+				<a href="#" class="button archive" data-options="align:right" aria-controls="drop<%= content.id %>" data-dropdown="drop<%= content.id %>"><%= content.title%> &raquo;</a>
+				<ul id="drop<%= content.id %>" class="f-dropdown" data-dropdown-menu>
+					<% if content.link.present? %>
+						<li><a href="<%= content.link %>" target="_blank">Go to this link</a></li>
+					<% else %>
+						<li><a href="#">This entry doesn't have a hyperlink</a></li>
+					<% end %>
+					<% if content.text %>
+						<li><a href="#"><%= content.title %></a></li>
+					<% end %>
+				</ul><br />
+			<% end %>
+		<% end %>
+	</div>
+<% else %>
+	<p>You don't have any entries in this archive</p><br />
+<% end %>
+
+<div class="entry row">
+	<div class="small-2 columns"></div>
+	<div class="small-8 columns">
+		<p>Add a new entry:</p>
+		<%= form_for([@archive, @content], url: archive_contents_path(@archive.id), method: :post)  do |f| %>
+			<div class="row collapse prefix-radius">
+				<div class="small-3 columns">
+					<span class="prefix"><%= f.label :title %></span>
+				</div>
+				<div class="small-9 columns">
+					<%= f.text_field :title, :autocomplete => :off %>
+				</div>
+			</div>
+			<div class="row collapse prefix-radius">
+				<div class="small-3 columns">
+					<span class="prefix"><%= f.label :link %></span>
+				</div>
+				<div class="small-9 columns">
+					<%= f.text_field :link, :autocomplete => :off %>
+				</div>
+			</div>
+			<label><%= f.label :text %></label>
+			<%= f.text_area :text %>
+	<%= f.submit %>
+	<% end %>
+	</div>
+	<div class="small-2 columns"></div>
+</div><br /><br />
+<% else %>
+<h1>You don't have permission to view this archive</h1>
+<% end %>

@@ -1,0 +1,22 @@
+.entry {
+	border: solid 1px gray;
+	border-radius: 5px;
+	padding-top: 10px;
+}
+
+.archive, button {
+	background-color: maroon;
+}
+
+button {
+	font-size: 0.8em;
+}
+
+.archive_destroy {
+	color: white;
+}
+
+/*.archive_edit {
+	float: right;
+	margin-top: -65px;
+}*/
