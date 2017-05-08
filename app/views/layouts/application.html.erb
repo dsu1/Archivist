@@ -36,7 +36,7 @@
 						<li class="divider"></li>
 
 						<% if current_user %>
-							<li><%= link_to "#{current_user.username}", users_path %></li>
+							<li><%= link_to "#{current_user.username}", user_path(current_user.id) %></li>
 							<li class="divider"></li>
 							<li><%= link_to "Archives", archives_path %></li>
 							<li class="divider"></li>

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find_by(username: user_id_params[:id])
+		@user = User.find(user_id_params[:id])
 		@archives = @user.archives
 	end
 

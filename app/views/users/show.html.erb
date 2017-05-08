@@ -1,13 +1,9 @@
-
 <% if current_user %>
 	<% if @archives.nil? %>
 		<p>You don't have any archives.</p>
 		<%= link_to  "Create An Archive", new_archive_path %>
 	<% else %>
-		<% @archives.each do |archive| %>
-			<h1><%= archive.name%></h1>
-			<p><%= archive.description%></p><br /><br />
-		<% end %>
+		<%= render partial: "archives/archives", collection: @archives %>
 	<% end %>
 <% else %>
 		<p>You are not allowed to view this account</p>
