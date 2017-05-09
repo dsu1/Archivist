@@ -6,9 +6,6 @@ class User < ActiveRecord::Base
 
 	has_many :archives, dependent: :destroy
 
-	# attr_accessor :email, :username, :password, :password_salt, :password_hash,
-	# 	:encrypted_password, :remember_me
-
 	attr_accessor :password, :password_confirmation, :remember_me
 
 	validates_confirmation_of :password
@@ -20,7 +17,6 @@ class User < ActiveRecord::Base
 	before_save :encrypt_password
 
 	def self.authenticate(email, password)
-		byebug
 		user = find_by_email(email)
 		if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
 			user
