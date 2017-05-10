@@ -29,7 +29,13 @@ class UsersController < ApplicationController
 		@archives = @user.archives
 	end
 
-	def delete
+	def destroy
+		@user = User.find(user_id_params[:id])
+		if current_user.id == @user.id
+			@user.destroy
+			session[:user_id] = nil
+			redirect_to root_url, :notice => "Your Account has been deleted"
+		end
 	end
 
 	def update
