@@ -1,2 +1,7 @@
 <h1>Archives</h1>
-<%= render partial: "archives", collection: @archives %>
+<% if @archives.empty? %>
+	<p>You don't have any archives</p><br />
+	<%= link_to "Click here to create a new archive", new_archive_path, :class => "button" %>
+<% else %>
+	<%= render partial: "archives", collection: @archives %>
+<% end %>
