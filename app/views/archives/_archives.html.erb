@@ -1,4 +1,13 @@
-<div>
-	<h4><%= link_to "#{archives.name}",  archive_path(archives.id) %></h4>
-	<p><%= archives.description %></p>
-</div>
+<li>
+	<div class="small-6 column archive-card">
+		<h4 class="archive-title"><%= link_to "#{archives.name} &rarr;".html_safe,  archive_path(archives.id) %></h4><br />
+		<% if archives.contents.count == 0 %>
+			<span>This archive is empty.</span><br />
+		<% elsif archives.contents.count == 1 %>
+			<span>This archive has one entry.</span><br />
+		<% else %>
+			<span>This archive has <%= archives.contents.count %> entries.</span><br />
+		<% end %>
+		<span><%= archives.created_at.strftime("Created %-m/%-d/%y at %-l:%M%p") %></span>
+	</div>
+</li>

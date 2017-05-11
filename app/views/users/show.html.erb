@@ -4,7 +4,9 @@
 		<p>You don't have any archives.</p>
 		<%= link_to  "Create An Archive", new_archive_path %><br />
 	<% else %>
-		<%= render partial: "archives/archives", collection: @archives %>
+		<ul class="no-list">
+			<%= render partial: "archives/archives", collection: @archives %>
+		</ul>
 	<% end %>
 	<br />
 	<%= link_to "Delete This Account", user_path(@user), :class => "button", :method => :delete, data: {confirm: 'Are you sure?'} %>
