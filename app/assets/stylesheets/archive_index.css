@@ -1,0 +1,33 @@
+.archive-title {
+	display: inline;
+}
+
+.archive-title > a {
+	color: white;
+}
+
+.side-section, .archive-card {
+	border: 1px solid black;
+	border-radius: 5px;
+	background-color: maroon;
+	margin-top: 30px;
+	padding: 5px 10px 15px;
+	box-shadow: 7px 7px 5px #888888;
+	color: white;
+}
+
+.side-section > * {
+	color: white;
+}
+
+.archive-card {
+	box-sizing: border-box;
+	width: 30%;
+	margin-right: 29px;
+	padding: 10px;
+	height: 110px;
+}
+
+.no-list {
+	list-style: none;
+}
