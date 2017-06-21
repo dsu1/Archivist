@@ -32,3 +32,9 @@ gem 'zurb-foundation'
 
 # To use debugger
 gem 'byebug'
+
+group :development, :test do
+  gem 'rspec-rails'
+	gem "factory_girl_rails"
+	gem 'capybara'
+end
