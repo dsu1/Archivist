@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.describe User, :type => :model do
 
-  it "is valid with valid user attributes" do
-  	expect(FactoryGirl.build(:user)).to be_valid
-  end
+	it "is valid with valid user attributes" do
+		expect(FactoryGirl.build(:user)).to be_valid
+	end
 
 	it "is invalid without a username" do
 		expect(FactoryGirl.build(:user, username: nil)).to_not be_valid
