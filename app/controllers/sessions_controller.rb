@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 	def new
+		# visiting the login page while logged in will redirect to the user's profile
+		if session[:user_id]
+			redirect_to user_path(current_user.id)
+		end
 	end
 
 	def create
